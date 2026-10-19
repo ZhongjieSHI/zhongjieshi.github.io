@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zhongjie Shi | Georgia Institute of Technology</title>
+<meta name="description" content="Zhongjie Shi, Visiting Assistant Professor in the School of Mathematics at Georgia Tech. Research on approximation, generalization, and optimization theory for machine learning: scaling laws for Transformers, in-context learning, and operator learning.">
+<meta name="author" content="Zhongjie Shi">
+<style>
+  :root {
+    --navy: #003057;
+    --gold: #b3a369;
+    --gold-light: #f4f1e6;
+    --text: #1f2933;
+    --muted: #5b6770;
+    --line: #e3e6ea;
+    --bg: #ffffff;
+    --card: #f8f9fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+  }
+  a { color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(0, 48, 87, 0.25); }
+  a:hover { border-bottom-color: var(--navy); }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+  }
+  .nav-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .nav-name { font-weight: 700; color: var(--navy); border: 0; letter-spacing: 0.2px; }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .nav-links a { border: 0; color: var(--muted); font-size: 15px; }
+  .nav-links a:hover { color: var(--navy); }
+
+  main { max-width: 960px; margin: 0 auto; padding: 0 24px 48px; }
+  section { padding: 36px 0 8px; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: 0; }
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px; color: var(--navy); margin: 0 0 16px;
+  }
+  h2::after { content: ""; display: block; width: 44px; height: 3px; background: var(--gold); margin-top: 8px; }
+  h3 { font-size: 17px; margin: 22px 0 8px; color: var(--navy); }
+
+  /* Header */
+  header.hero {
+    display: flex; gap: 36px; align-items: center;
+    padding: 44px 0 36px; border-bottom: 1px solid var(--line);
+  }
+  .photo-wrap { flex: 0 0 220px; }
+  .photo-wrap img {
+    width: 220px; height: auto; display: block; border-radius: 10px;
+    border: 4px solid var(--gold-light); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  }
+  .initials {
+    display: none; width: 180px; height: 180px; border-radius: 50%; margin: 0 auto;
+    align-items: center; justify-content: center; border: 4px solid var(--gold-light);
+    background: var(--navy); color: #fff; font-family: Georgia, serif; font-size: 56px; letter-spacing: 2px;
+  }
+  .hero h1 { font-family: Georgia, "Times New Roman", serif; font-size: 40px; margin: 0; color: var(--navy); line-height: 1.15; }
+  .hero .role { font-size: 18px; margin: 10px 0 2px; }
+  .hero .affil { color: var(--muted); margin: 0 0 14px; }
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .btn {
+    display: inline-block; padding: 7px 16px; border-radius: 999px; font-size: 14.5px; font-weight: 600;
+    border: 1.5px solid var(--navy); color: var(--navy);
+  }
+  .btn.primary { background: var(--navy); color: #fff; }
+  .btn:hover { opacity: 0.88; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; padding: 0; list-style: none; }
+  .tags li { background: var(--gold-light); color: #5a4f22; border-radius: 999px; padding: 3px 12px; font-size: 14px; }
+
+  /* Research cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0 8px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 8px; padding: 16px 18px; }
+  .card h3 { margin: 0 0 8px; font-size: 16.5px; }
+  .card p { margin: 0 0 10px; font-size: 15px; }
+  .card .ref { font-size: 13.5px; color: var(--muted); }
+
+  ul.plain { padding-left: 20px; margin: 8px 0; }
+  ul.plain li { margin: 4px 0; }
+
+  /* News */
+  .news { list-style: none; padding: 0; margin: 0; }
+  .news li { display: flex; gap: 16px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .news li:last-child { border-bottom: 0; }
+  .news .date { flex: 0 0 76px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* Publications */
+  .note { color: var(--muted); font-size: 14px; margin: -6px 0 6px; }
+  ol.pubs { padding-left: 26px; margin: 8px 0 0; }
+  ol.pubs li { margin: 0 0 14px; padding-left: 4px; }
+  .pub-title { font-weight: 600; }
+  .venue { font-style: italic; }
+  .me { font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+  .links a { font-size: 13px; font-weight: 600; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-right: 4px; white-space: nowrap; }
+  .links a:hover { border-color: var(--navy); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: var(--navy); border-radius: 4px; padding: 0 6px; margin-left: 4px; vertical-align: 1px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.term { color: var(--muted); white-space: nowrap; width: 120px; text-align: right; }
+  td.code { white-space: nowrap; font-weight: 600; width: 110px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .item { margin: 0 0 14px; }
+  .item .what { font-weight: 600; }
+  .item .meta { color: var(--muted); font-size: 14.5px; }
+
+  footer { max-width: 960px; margin: 0 auto; padding: 22px 24px 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 820px) {
+    .cards { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 0; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 620px) {
+    header.hero { flex-direction: column; text-align: center; gap: 18px; padding-top: 28px; }
+    .photo-wrap { flex: none; }
+    .photo-wrap img { margin: 0 auto; }
+    .buttons { justify-content: center; }
+    .tags { justify-content: center; }
+    .hero h1 { font-size: 32px; }
+    td.term { width: auto; }
+  }
+  @media print {
+    nav, .buttons { display: none; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Zhongjie Shi</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#talks">Talks</a>
+      <a href="#service">Service</a>
+      <a href="files/CV_Zhongjie_Shi.pdf">CV</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <header class="hero">
+    <div class="photo-wrap">
+      <!-- photo.jpg is shown at 220px wide with its original proportions; if the file is missing, the initials are shown instead. -->
+      <img src="photo.jpg" alt="Photo of Zhongjie Shi"
+           onerror="this.style.display='none'; document.getElementById('initials').style.display='flex';">
+      <div class="initials" id="initials" aria-hidden="true">ZS</div>
+    </div>
+    <div>
+      <h1>Zhongjie Shi</h1>
+      <p class="role">Visiting Assistant Professor</p>
+      <p class="affil">School of Mathematics, Georgia Institute of Technology<br>
+        Mathematical foundations of machine learning: approximation, generalization, and optimization</p>
+      <div class="buttons">
+        <a class="btn primary" href="mailto:zshi332@gatech.edu">zshi332@gatech.edu</a>
+        <a class="btn" href="files/CV_Zhongjie_Shi.pdf">CV (PDF)</a>
+        <a class="btn" href="#publications">Publications</a>
+        <!-- <a class="btn" href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a> -->
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I am a Visiting Assistant Professor in the School of Mathematics at the Georgia Institute of Technology, where I work with Prof. Wenjing Liao. I study why modern learning models, such as the Transformers behind large language models, can learn accurately from limited data, and how much data, model capacity, and computation they need. My tools are approximation theory, statistical learning theory, and optimization, and my applications range from scientific computing to privacy and robustness.</p>
+    <p>I received my Ph.D. in Data Science from City University of Hong Kong in 2022, advised by Prof. Ding-Xuan Zhou, and my B.Sc. in Computing Mathematics, with a minor in Computer Science, from the same university in 2018. Before joining Georgia Tech in 2025, I was a postdoctoral fellow at KU Leuven with Prof. Johan A.K. Suykens (2022&ndash;2023) and at the University of Hong Kong with Prof. Yuan Cao (2023&ndash;2025).</p>
+    <p><strong>I am on the academic job market in 2026&ndash;2027</strong> and welcome inquiries about tenure-track positions.</p>
+    <ul class="tags" aria-label="Research interests">
+      <li>Deep learning theory</li>
+      <li>Neural network approximation theory</li>
+      <li>Operator learning</li>
+      <li>Optimization</li>
+      <li>Distributed learning</li>
+      <li>Trustworthy AI</li>
+    </ul>
+
+    <h3>News</h3>
+    <ul class="news">
+      <li><span class="date">Sep 2026</span><span>Organizer of the <strong>2nd Atlanta Mathematics of Data Science Bootcamp</strong> at Georgia Tech, September 19&ndash;20.</span></li>
+      <li><span class="date">Sep 2026</span><span>New preprints on <a href="https://arxiv.org/abs/2609.29060">in-context learning across related tasks</a> and on <a href="https://arxiv.org/abs/2609.33533">neural scaling laws of Transformer operator networks</a>.</span></li>
+      <li><span class="date">Sep 2026</span><span>Our paper on the learning theory of Transformers via Softmax partition of unity, with Wenjing Liao, is accepted at <strong>NeurIPS 2026</strong>.</span></li>
+      <li><span class="date">Jun 2026</span><span>Our paper on distributed functional optimization over time-varying networks is published in <em>IEEE Transactions on Control of Network Systems</em>.</span></li>
+      <li><span class="date">Apr 2026</span><span>Two papers published: generalization of overfitted networks in adversarial training in the <em>SIAM Journal on Mathematics of Data Science</em>, and high-probability convergence for distributed composite optimization with sub-Weibull noise in <em>IEEE Transactions on Automatic Control</em>.</span></li>
+      <li><span class="date">Jan 2026</span><span>Our paper on generalization in differentially private gradient descent appears at <strong>AAAI 2026</strong>, and our paper on distributed composite block mirror descent is published in <em>IEEE Transactions on Automatic Control</em>.</span></li>
+      <li><span class="date">Dec 2025</span><span>Two papers published: nonlinear functional regression with kernel embedding in the <em>Journal of Machine Learning Research</em>, and Vision Transformers for hierarchical compositional models in <em>Applied and Computational Harmonic Analysis</em>.</span></li>
+      <li><span class="date">Aug 2025</span><span>Joined the School of Mathematics at Georgia Tech as a Visiting Assistant Professor.</span></li>
+    </ul>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <h3>Research directions</h3>
+    <ul class="plain">
+      <li><strong>Operator learning:</strong> learning maps between functions, such as the solution operators of differential equations, from finitely many solved instances. This includes scaling laws for Transformer operator networks and approximation and generalization theory for functional and distribution regression with deep neural networks and kernel methods.</li>
+      <li><strong>Neural network approximation and generalization:</strong> what deep convolutional networks, Vision Transformers, and Softmax Transformers can represent, and how prediction error scales with model size and sample size, including minimax-optimal rates for nonparametric regression.</li>
+      <li><strong>Optimization and neural network training dynamics:</strong> high-probability convergence theory for distributed composite optimization under heavy-tailed noise, and how gradient methods with injected noise, such as differentially private gradient descent, acquire features and generalize in two-layer convolutional networks.</li>
+      <li><strong>Distributed learning for large-scale data:</strong> distributed gradient descent for functional learning with optimal rates, distributed functional optimization over time-varying networks, and decentralized robust kernel-based learning.</li>
+      <li><strong>Trustworthy AI:</strong> differential privacy and adversarial robustness, including settings in which the noise that protects privacy also prevents memorization, so that privacy and accuracy need not be traded off.</li>
+    </ul>
+
+    <h3>Key questions and representative work</h3>
+    <p>Why do modern learning models generalize well from limited data, both within a single task and across related tasks, and how much data and model capacity do they require? I answer these questions with approximation theory and statistical learning theory, turning them into quantitative scaling laws that say when learning is efficient and when its predictions can be trusted. A single idea runs through my recent work: the attention weights of a Softmax Transformer form a smooth <em>partition of unity</em>, dividing the input space into overlapping neighborhoods and blending simple local approximations into a global one.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Scaling laws for Transformers</h3>
+        <p>The partition-of-unity viewpoint gives model- and data-scaling laws for Softmax Transformers: how accuracy improves with more parameters or more observations, at rates governed by the smoothness and intrinsic dimension of the data. Clipped empirical risk minimization attains minimax-optimal rates, up to logarithmic factors, for nonparametric regression.</p>
+        <span class="ref">NeurIPS 2026 &middot; <a href="https://arxiv.org/abs/2605.08811">arXiv:2605.08811</a></span>
+      </div>
+      <div class="card">
+        <h3>Sample-efficient in-context learning</h3>
+        <p>Why can a pretrained Transformer solve a new task from a handful of examples? Treating a task family as clusters of related tasks around representative anchor tasks, I show that shared structure yields a context-sample rate that no longer deteriorates with the input dimension; that cost is shifted to pretraining, where many tasks are available.</p>
+        <span class="ref"><a href="https://arxiv.org/abs/2609.29060">arXiv:2609.29060</a></span>
+      </div>
+      <div class="card">
+        <h3>Scaling laws for operator learning</h3>
+        <p>Operator networks learn maps between functions, such as the solution operator of a differential equation. Extending the framework with a doctoral student, we derived model- and data-scaling laws for Transformer operator networks: once inputs are discretized finely enough, accuracy is governed by the number of solved instances and the network size.</p>
+        <span class="ref"><a href="https://arxiv.org/abs/2609.33533">arXiv:2609.33533</a></span>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p class="note">* corresponding author &middot; <sup>&dagger;</sup> alphabetical author order</p>
+
+    <h3>Preprints and submitted papers</h3>
+    <ol class="pubs">
+      <li><span class="me">Zhongjie Shi</span>, Rongjie Lai, Alexander Cloninger, and Wenjing Liao.
+        <span class="pub-title">Transformers as Cross-Task Learners: Shared Structure Drives Sample Efficiency in In-Context Learning.</span>
+        Submitted, 2026.
+        <span class="links"><a href="https://arxiv.org/abs/2609.29060">arXiv</a></span></li>
+      <li>Haoran Yan, <span class="me">Zhongjie Shi</span>, Yuanze Xi, Peng Chen, and Wenjing Liao.
+        <span class="pub-title">Neural Scaling Laws of Transformer Operator Network.</span>
+        Submitted, 2026.
+        <span class="links"><a href="https://arxiv.org/abs/2609.33533">arXiv</a></span></li>
+      <li>Zhan Yu, <span class="me">Zhongjie Shi</span>, and Ding-Xuan Zhou.
+        <span class="pub-title">Learning Theory of Decentralized Robust Kernel-Based Learning Algorithm.</span>
+        Under review at <span class="venue">Journal of Machine Learning Research</span>.
+        <span class="links"><a href="https://arxiv.org/abs/2506.05215">arXiv</a></span></li>
+    </ol>
+
+    <h3>Journal and conference papers</h3>
+    <ol class="pubs">
+      <li><span class="me">Zhongjie Shi</span>* and Wenjing Liao.
+        <span class="pub-title">Learning Theory of Transformers: Local-to-Global Approximation via Softmax Partition of Unity.</span>
+        <span class="venue">Advances in Neural Information Processing Systems (NeurIPS)</span>, 2026.
+        <span class="links"><a href="https://arxiv.org/abs/2605.08811">arXiv</a></span></li>
+      <li><span class="me">Zhongjie Shi</span>*, Fanghui Liu, Yuan Cao, and Johan A.K. Suykens.
+        <span class="pub-title">Can overfitted deep neural networks in adversarial training generalize? An approximation viewpoint.</span>
+        <span class="venue">SIAM Journal on Mathematics of Data Science</span>, 8(2): 225&ndash;256, 2026.
+        <span class="links"><a href="https://doi.org/10.1137/24M1634023">DOI</a><a href="https://arxiv.org/abs/2401.02890">arXiv</a></span></li>
+      <li><span class="me">Zhongjie Shi</span>, Puyu Wang, Chenyang Zhang, and Yuan Cao.
+        <span class="pub-title">Towards Understanding Generalization in DP-GD: A Case Study in Training Two-Layer CNNs.</span>
+        <span class="venue">AAAI Conference on Artificial Intelligence (AAAI)</span>, 2026.
+        <span class="links"><a href="https://doi.org/10.1609/aaai.v40i30.39731">DOI</a></span></li>
+      <li>Zhan Yu, <span class="me">Zhongjie Shi</span>, and Deming Yuan.
+        <span class="pub-title">High-Probability Convergence Theory for Distributed Composite Optimization with Sub-Weibull Noises.</span>
+        <span class="venue">IEEE Transactions on Automatic Control</span>, 2026.
+        <span class="links"><a href="https://doi.org/10.1109/TAC.2026.3687492">DOI</a></span></li>
+      <li>Zhan Yu, <span class="me">Zhongjie Shi</span>, Deming Yuan, and Daniel W. C. Ho.
+        <span class="pub-title">Generic Frameworks for Distributed Functional Optimization and Learning Over Time-Varying Networks.</span>
+        <span class="venue">IEEE Transactions on Control of Network Systems</span>, 2026.
+        <span class="links"><a href="https://doi.org/10.1109/TCNS.2026.3701536">DOI</a></span></li>
+      <li>Zhan Yu, Daniel W. C. Ho, Deming Yuan, and <span class="me">Zhongjie Shi</span>.
+        <span class="pub-title">Distributed composite optimization with distributed composite block mirror descent.</span>
+        <span class="venue">IEEE Transactions on Automatic Control</span>, 2026.
+        <span class="links"><a href="https://doi.org/10.1109/TAC.2026.3652901">DOI</a></span></li>
+      <li><span class="me">Zhongjie Shi</span>, Zhiying Fang, and Yuan Cao.
+        <span class="pub-title">Approximation and estimation capability of Vision Transformers for hierarchical compositional models.</span>
+        <span class="venue">Applied and Computational Harmonic Analysis</span>, 82: 101849, 2026.
+        <span class="links"><a href="https://doi.org/10.1016/j.acha.2025.101849">DOI</a></span></li>
+      <li><span class="me">Zhongjie Shi</span>*, Jun Fan, Linhao Song, Ding-Xuan Zhou, and Johan A.K. Suykens.
+        <span class="pub-title">Nonlinear functional regression by functional deep neural network with kernel embedding.</span>
+        <span class="venue">Journal of Machine Learning Research</span>, 26(284): 1&ndash;49, 2025.
+        <span class="links"><a href="https://jmlr.org/papers/v26/23-0659.html">JMLR</a><a href="https://arxiv.org/abs/2401.13624">arXiv</a></span></li>
+      <li><span class="me">Zhongjie Shi</span>, Zhan Yu, and Ding-Xuan Zhou.
+        <span class="pub-title">Learning theory of distribution regression with neural networks.</span>
+        <span class="venue">Constructive Approximation</span>, 62(1): 61&ndash;104, 2025.
+        <span class="links"><a href="https://doi.org/10.1007/s00365-025-09715-6">DOI</a></span></li>
+      <li>Zhan Yu, Jun Fan, <span class="me">Zhongjie Shi</span>, and Ding-Xuan Zhou.
+        <span class="pub-title">Distributed gradient descent for functional learning.</span>
+        <span class="venue">IEEE Transactions on Information Theory</span>, 70(9): 6547&ndash;6571, 2024.
+        <span class="links"><a href="https://doi.org/10.1109/TIT.2024.3428325">DOI</a></span></li>
+      <li>Tong Mao, <span class="me">Zhongjie Shi</span><sup>&dagger;</sup>*, and Ding-Xuan Zhou.
+        <span class="pub-title">Approximating functions with multi-features by deep convolutional neural networks.</span>
+        <span class="venue">Analysis and Applications</span>, 21(1): 93&ndash;125, 2023.
+        <span class="links"><a href="https://doi.org/10.1142/S0219530522400085">DOI</a></span></li>
+      <li>Tong Mao, <span class="me">Zhongjie Shi</span><sup>&dagger;</sup>, and Ding-Xuan Zhou.
+        <span class="pub-title">Theory of deep convolutional neural networks III: Approximating radial functions.</span>
+        <span class="venue">Neural Networks</span>, 144: 778&ndash;790, 2021.
+        <span class="links"><a href="https://doi.org/10.1016/j.neunet.2021.09.027">DOI</a></span></li>
+      <li>Zhan Yu, Daniel W. C. Ho, <span class="me">Zhongjie Shi</span>, and Ding-Xuan Zhou.
+        <span class="pub-title">Robust kernel-based distribution regression.</span>
+        <span class="venue">Inverse Problems</span>, 37(10): 105014, 2021.
+        <span class="links"><a href="https://doi.org/10.1088/1361-6420/ac23c3">DOI</a></span></li>
+    </ol>
+  </section>
+
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <p>I view teaching as an interactive process that develops students' understanding and capacity for independent thought: I begin from what students already know, move between pictures, examples, and notation, and ask students to rebuild an argument in a new setting. I would be glad to teach courses from calculus and linear algebra to approximation theory, optimization, and the mathematical foundations of machine learning.</p>
+    <h3>Instructor, Georgia Institute of Technology</h3>
+    <table>
+      <tr><td class="code">MATH 2551</td><td>Multivariable Calculus</td><td class="term">Fall 2026</td></tr>
+      <tr><td class="code">MATH 2550</td><td>Introduction to Multivariable Calculus</td><td class="term">Spring 2026</td></tr>
+      <tr><td class="code">MATH 1553</td><td>Introduction to Linear Algebra</td><td class="term">Fall 2025</td></tr>
+    </table>
+  </section>
+
+  <section id="talks">
+    <h2>Selected Talks</h2>
+    <div class="item"><div class="what">Approximation and Generalization of Transformers for In-Context Learning with Cross-Task Structure</div>
+      <div class="meta">Scientific Machine Learning: Theory, Algorithms, Applications, and Agentic AI Workflows, University of Notre Dame, 2026</div></div>
+    <div class="item"><div class="what">Can we avoid robust overfitting in adversarial training? An approximation viewpoint</div>
+      <div class="meta">MATH 5470: Statistical Machine Learning, Hong Kong University of Science and Technology, 2025</div></div>
+    <div class="item"><div class="what">Nonlinear functional regression by functional deep neural network with kernel embedding</div>
+      <div class="meta">SIAM Seminar, Georgia Tech, 2024 &middot; 7th International Conference on Econometrics and Statistics (EcoSta 2024), Beijing Normal University &middot; SDSC Seminar, City University of Hong Kong, 2024</div></div>
+  </section>
+
+  <section id="service">
+    <h2>Service and Honors</h2>
+    <div class="two-col">
+      <div>
+        <h3>Organization</h3>
+        <ul class="plain">
+          <li>Organizer, 2nd Atlanta Mathematics of Data Science Bootcamp, Georgia Tech (September 19&ndash;20, 2026)</li>
+        </ul>
+        <h3>Reviewing</h3>
+        <p style="margin:6px 0"><strong>Journals:</strong> Applied and Computational Harmonic Analysis; Journal of Approximation Theory; Analysis and Applications; Applied Numerical Mathematics; IEEE Transactions on Pattern Analysis and Machine Intelligence; IEEE Transactions on Neural Networks and Learning Systems; IEEE Transactions on Automatic Control; Neural Networks; Signal Processing.</p>
+        <p style="margin:6px 0"><strong>Conferences:</strong> NeurIPS 2024, 2026; ICLR 2025; AAAI 2026.</p>
+      </div>
+      <div>
+        <h3>Honors and Awards</h3>
+        <ul class="plain">
+          <li>Outstanding Research Thesis Award, City University of Hong Kong (one of 8 awardees in 2022)</li>
+          <li>HKSAR Government Scholarship (top 2% university-wide), 2017</li>
+          <li>HKSAR Government Scholarship Fund &ndash; Talent Development Scholarship, 2015</li>
+        </ul>
+        <h3>Contact</h3>
+        <p style="margin:6px 0">School of Mathematics<br>Georgia Institute of Technology<br>Atlanta, GA 30332, USA<br>
+          <a href="mailto:zshi332@gatech.edu">zshi332@gatech.edu</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2026 Zhongjie Shi &middot; Last updated October 2026
+</footer>
+
+</body>
+</html>
